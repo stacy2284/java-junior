@@ -4,32 +4,38 @@ package com.acme.edu;
 import java.util.Objects;
 
 public class Logger {
-    private static void OutDesign(String type, String message) {
+    private static int summ=0;
+    private static void ConsoleOut(String type, String message) {
         System.out.println(type + message);
     }
 
     public static void log(int message) {
-        OutDesign("primitive: ", Integer.toString(message));
+        summ = summ + message;
+        ConsoleOut("primitive: ", Integer.toString(message));
     }
 
     public static void log(byte message) {
-        OutDesign("primitive: ", Byte.toString(message));
+        ConsoleOut("primitive: ", Byte.toString(message));
     }
 
     public static void log(char message) {
-        OutDesign("char: ", Character.toString(message));
+        ConsoleOut("char: ", Character.toString(message));
     }
+
     public static void log(String message) {
-        OutDesign("string: ", message);
+        ConsoleOut("summ: ", Integer.toString(summ));
+        summ = 0;
+        ConsoleOut("string: ", message);
     }
 
     public static void log(boolean message) {
-        OutDesign("primitive: ", Boolean.toString(message));
+        ConsoleOut("primitive: ", Boolean.toString(message));
     }
+
     public static void log(Object obj) {
         if (obj != null)
-            OutDesign("reference: ", Objects.toString(obj));
+            ConsoleOut("reference: ", Objects.toString(obj));
         else
-            OutDesign("reference: ", "null");
+            ConsoleOut("reference: ", "null");
     }
 }
