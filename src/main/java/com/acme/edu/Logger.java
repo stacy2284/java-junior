@@ -1,25 +1,32 @@
 package com.acme.edu;
 
+
+import java.util.Objects;
+
 public class Logger {
+    private static void OutDesign(String type, String message) {
+        System.out.println(type + message);
+    }
+
     public static void log(int message) {
-        System.out.println("primitive: " + message);
+        OutDesign("primitive: ", Integer.toString(message));
     }
 
     public static void log(byte message) {
-        System.out.println("primitive: " + message);
+        OutDesign("primitive: ", Byte.toString(message));
     }
 
     public static void log(char message) {
-        System.out.println("char: " + message);
+        OutDesign("char: ", Character.toString(message));
     }
     public static void log(String message) {
-        System.out.println("string: " + message);
+        OutDesign("string: ", message);
     }
 
     public static void log(boolean message) {
-        System.out.println("primitive: " + message);
+        OutDesign("primitive: ", Boolean.toString(message));
     }
     public static void log(Object obj) {
-        System.out.println("reference: " + obj);
+        OutDesign("reference: ", Objects.toString(obj));
     }
 }
