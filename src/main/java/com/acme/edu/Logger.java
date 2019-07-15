@@ -27,6 +27,9 @@ public class Logger {
         OutDesign("primitive: ", Boolean.toString(message));
     }
     public static void log(Object obj) {
-        OutDesign("reference: ", Objects.toString(obj));
+        if (obj != null)
+            OutDesign("reference: ", Objects.toString(obj));
+        else
+            OutDesign("reference: ", "null");
     }
 }
