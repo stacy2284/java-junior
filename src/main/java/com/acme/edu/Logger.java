@@ -5,8 +5,7 @@ import java.util.Objects;
 
 public class Logger {
     public static void close(){
-        AccumConsoleOut();
-        StringConsoleOut();
+        AccumConsoleOut(Types.CLOSE);
     }
 
     public static void flush(){
@@ -27,6 +26,16 @@ public class Logger {
     private static int numberOfIdenticalStr = 0;
     private static String prevString;
 
+    enum Types {
+        INT,
+        BYTE,
+        STRING,
+        CHAR,
+        BOOL,
+        OBJ,
+        CLOSE
+    }
+
     private static void AccumIntConsoleOut() {
         if (isPrevInt) {
             ConsoleOut("primitive: ", Integer.toString(accumIntSumm));
@@ -41,15 +50,30 @@ public class Logger {
         }
     }
 
-    private static void AccumConsoleOut() {
-        AccumByteConsoleOut();
-        AccumIntConsoleOut();
+    private static void AccumConsoleOut(Types type) {
+        if (type != Types.INT) {
+            AccumIntConsoleOut();
+        }
+        if (type != Types.BYTE) {
+            AccumByteConsoleOut();
+        }
+        if (type != Types.STRING) {
+            StringConsoleOut();
+        }
     }
 
     private static void smartSumm(int message) {
-        int maxDiff = Integer.MAX_VALUE - accumIntSumm;
-        int minDiff = Integer.MIN_VALUE - accumIntSumm;
-        if (maxDiff >= message && minDiff <= message) {
+        int diff = 0;
+        boolean isOverflowed;
+        if (accumIntSumm >= 0) {
+            diff =  Integer.MAX_VALUE - accumIntSumm;
+            isOverflowed = diff < message;
+        }
+        else {
+            diff =  Integer.MIN_VALUE - accumIntSumm;
+            isOverflowed = diff > message;
+        }
+        if (!isOverflowed) {
             accumIntSumm = accumIntSumm + message;
         } else {
             AccumIntConsoleOut();
@@ -84,27 +108,24 @@ public class Logger {
     }
 
     public static void log(int message) {
-        AccumByteConsoleOut();
-        StringConsoleOut();
+        AccumConsoleOut(Types.INT);
         smartSumm(message);
         isPrevInt = true;
     }
 
     public static void log(byte message) {
-        AccumIntConsoleOut();
-        StringConsoleOut();
+        AccumConsoleOut(Types.BYTE);
         smartSumm(message);
         isPrevByte = true;
     }
 
     public static void log(char message) {
-        AccumConsoleOut();
-        StringConsoleOut();
+        AccumConsoleOut(Types.CHAR);
         ConsoleOut("char: ", Character.toString(message));
     }
 
     public static void log(String message) {
-        AccumConsoleOut();
+        AccumConsoleOut(Types.STRING);
         if(Objects.equals(message, prevString)) {
             numberOfIdenticalStr++;
         } else {
@@ -116,14 +137,12 @@ public class Logger {
     }
 
     public static void log(boolean message) {
-        StringConsoleOut();
-        AccumConsoleOut();
+        AccumConsoleOut(Types.BOOL);
         ConsoleOut("primitive: ", Boolean.toString(message));
     }
 
     public static void log(Object obj) {
-        StringConsoleOut();
-        AccumConsoleOut();
+        AccumConsoleOut(Types.OBJ);
         if (obj != null)
             ConsoleOut("reference: ", Objects.toString(obj));
         else
