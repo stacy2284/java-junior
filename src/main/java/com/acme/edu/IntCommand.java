@@ -1,8 +1,5 @@
 package com.acme.edu;
 
-/**
- * Created by Java_5 on 17.07.2019.
- */
 public class IntCommand extends Command {
     private int message;
 
@@ -16,15 +13,12 @@ public class IntCommand extends Command {
         return this.message;
     }
 
-    public String decorate() {
-        return("primitive: ");
-    }
-
     public String toString() {
         return("primitive: " + message);
     }
 
     public void accumulate(Command prevCommand) {
+        if (prevCommand==null) return;
         this.message += (int)prevCommand.getMessage();
     }
 
@@ -38,5 +32,9 @@ public class IntCommand extends Command {
         boolean isNegativeOverflow = (accumulatedSumm < 0) && (diffNeg > message);
 
         return isPositiveOverflow || isNegativeOverflow;
+    }
+
+    public boolean shouldFlushNow(Command prevCommand) {
+        return isOverflowed(prevCommand);
     }
 }

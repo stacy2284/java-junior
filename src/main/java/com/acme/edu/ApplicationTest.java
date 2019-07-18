@@ -5,10 +5,14 @@ package com.acme.edu;
  */
 public class ApplicationTest {
     public static void main(String[] args) {
-        LoggerController LC = new LoggerController(new LogSaver());
+        LoggerController LC = new LoggerController(new LogConsoleSaver());
 
         LC.log(new IntCommand(5));
         LC.log(new IntCommand(6));
+        LC.log(new IntCommand(Integer.MAX_VALUE));
+        LC.log(new IntCommand(14));
         LC.log(new CharCommand('c'));
+        LC.log(new StringCommand("asfg"));
+        LC.close();
     }
 }

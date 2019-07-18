@@ -1,13 +1,8 @@
 package com.acme.edu;
 
-/**
- * Created by Java_5 on 17.07.2019.
- */
 public class LoggerController {
 
     private LogSaver saver;
-
-    private LogState state;
 
     private Command prevCommand = null;
 
@@ -15,8 +10,13 @@ public class LoggerController {
         this.saver = saver;
     }
 
+    void close() {
+        saver.save(prevCommand.toString());
+    }
+
     void log(Command command) {
-        if (command.isChanged(prevCommand) || command.isOverflowed(prevCommand)) {
+
+        if ((prevCommand != null) && (command.isChanged(prevCommand) || command.shouldFlushNow(prevCommand))) {
             saver.save(prevCommand.toString());
             prevCommand = null;
         }

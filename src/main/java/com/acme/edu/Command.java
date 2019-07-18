@@ -1,19 +1,19 @@
 package com.acme.edu;
 
-/**
- * Created by Java_5 on 17.07.2019.
- */
+import java.util.Objects;
+
 public abstract class Command {
     public String state;
 
     public boolean isChanged(Command prevCommand) {
-        return !this.state.equals(prevCommand.state);
+        return !Objects.equals(this.state, prevCommand.state);
     }
 
     public abstract String toString();
 
     public abstract void accumulate(Command prevCommand);
 
-    public abstract boolean isOverflowed(Command prevCommand);
+    public abstract boolean shouldFlushNow(Command prevCommand);
+
     public abstract Object getMessage();
 }

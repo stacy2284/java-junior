@@ -1,9 +1,6 @@
 package com.acme.edu;
 
-/**
- * Created by Java_5 on 18.07.2019.
- */
-public class CharCommand extends Command{
+public class CharCommand extends Command {
     private char message;
 
     public String state = "Char";
@@ -16,17 +13,14 @@ public class CharCommand extends Command{
         return this.message;
     }
 
-    public String decorate() {
-        return("char: ");
-    }
-
     public String toString() {
-        return("char: " + message);
+        return ("char: " + message);
     }
 
-    public boolean isOverflowed(Command prevCommand) {
+    public void accumulate(Command prevCommand) {
+    }
+
+    public boolean shouldFlushNow(Command prevCommand) {
         return true;
     }
-
-    public void accumulate(Command prevCommand) {}
 }
