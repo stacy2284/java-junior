@@ -1,19 +1,22 @@
 package com.acme.edu;
 
-public class CharCommand extends Command {
-    private char message;
+/**
+ * Created by Java_5 on 19.07.2019.
+ */
+public class ObjCommand extends Command {
+    private Object message;
 
-    public CharCommand(char message) {
+    public ObjCommand(Object message) {
         this.message = message;
-        this.state = "Char";
+        this.state = "Obj";
     }
 
-    public Character getMessage() {
+    public Object getMessage() {
         return this.message;
     }
 
     public String toString() {
-        return ("char: " + message);
+        return ("reference: " + message);
     }
 
     public void accumulate(Command prevCommand) {

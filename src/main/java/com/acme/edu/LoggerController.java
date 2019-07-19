@@ -16,7 +16,7 @@ public class LoggerController {
 
     void log(Command command) {
 
-        if ((prevCommand != null) && (command.isChanged(prevCommand) || command.shouldFlushNow(prevCommand))) {
+        if ((prevCommand != null) && ((command.isChanged(prevCommand) || command.shouldFlushNow(prevCommand)))) {
             saver.save(prevCommand.toString());
             prevCommand = null;
         }

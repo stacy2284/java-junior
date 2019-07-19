@@ -5,13 +5,12 @@ import java.util.Objects;
 public class StringCommand extends Command{
     private String message;
 
-    private int numberOfIdenticalStr;
-
-    public String state = "String";
+    public int numberOfIdenticalStr;
 
     public StringCommand(String message) {
         this.message = message;
-        numberOfIdenticalStr = 0;
+        this.numberOfIdenticalStr = 1;
+        this.state = "String";
     }
 
     public String getMessage(){
@@ -19,10 +18,16 @@ public class StringCommand extends Command{
     }
 
     public String toString() {
-        return("string: " + message);
+        if (numberOfIdenticalStr == 1) {
+            return("string: " + message);
+        }
+        return("string: " + message + " (x" + numberOfIdenticalStr + ")");
     }
 
     public void accumulate(Command prevCommand) {
+        if (prevCommand instanceof StringCommand && !isDifferentString(prevCommand)) {
+            this.numberOfIdenticalStr += ((StringCommand)prevCommand).numberOfIdenticalStr;
+        }
     }
 
     private boolean isDifferentString(Command prevCommand) {

@@ -12,7 +12,15 @@ public class ApplicationTest {
         LC.log(new IntCommand(Integer.MAX_VALUE));
         LC.log(new IntCommand(14));
         LC.log(new CharCommand('c'));
-        LC.log(new StringCommand("asfg"));
+        LC.log(new StringCommand("abc"));
+        LC.log(new StringCommand("abc"));
+        LC.log(new StringCommand("abc"));
+        LC.log(new StringCommand("abc"));
+        LC.log(new StringCommand("abcd"));
+        LC.log(new BoolCommand(true));
+        LC.log(new BoolCommand(false));
+        LC.log(new ObjCommand(new Object()));
+
         LC.close();
     }
 }

@@ -1,14 +1,15 @@
 package com.acme.edu;
 
-public class IntCommand extends Command {
-    private int message;
 
-    public IntCommand(int message) {
+public class ByteCommand extends Command{
+    private byte message;
+
+    public ByteCommand(byte message) {
         this.message = message;
-        this.state = "Int";
+        this.state = "Byte";
     }
 
-    public Integer getMessage(){
+    public Byte getMessage(){
         return this.message;
     }
 
@@ -18,14 +19,14 @@ public class IntCommand extends Command {
 
     public void accumulate(Command prevCommand) {
         if (prevCommand==null) return;
-        this.message += (int)prevCommand.getMessage();
+        this.message += (byte)prevCommand.getMessage();
     }
 
     public boolean isOverflowed(Command prevCommand) {
-        int accumulatedSumm = (int)prevCommand.getMessage();
+        int accumulatedSumm = (byte)prevCommand.getMessage();
 
-        int diffPos = Integer.MAX_VALUE - accumulatedSumm;
-        int diffNeg = Integer.MIN_VALUE - accumulatedSumm;
+        int diffPos = Byte.MAX_VALUE - accumulatedSumm;
+        int diffNeg = Byte.MIN_VALUE - accumulatedSumm;
 
         boolean isPositiveOverflow = (accumulatedSumm >= 0) && (diffPos < message);
         boolean isNegativeOverflow = (accumulatedSumm < 0) && (diffNeg > message);

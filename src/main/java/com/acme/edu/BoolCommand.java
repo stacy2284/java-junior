@@ -1,19 +1,22 @@
 package com.acme.edu;
 
-public class CharCommand extends Command {
-    private char message;
+/**
+ * Created by Java_5 on 19.07.2019.
+ */
+public class BoolCommand extends Command {
+    private boolean message;
 
-    public CharCommand(char message) {
+    public BoolCommand(boolean message) {
         this.message = message;
-        this.state = "Char";
+        this.state = "Bool";
     }
 
-    public Character getMessage() {
+    public Boolean getMessage() {
         return this.message;
     }
 
     public String toString() {
-        return ("char: " + message);
+        return ("primitive: " + message);
     }
 
     public void accumulate(Command prevCommand) {
