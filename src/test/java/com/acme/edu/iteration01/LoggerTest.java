@@ -22,45 +22,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     }
     //endregion
 
-
-    @Test
-    public void shouldLogInteger() throws IOException {
-        //region when
-        Logger.log("!!");
-        Logger.log(1);
-        Logger.log(0);
-        Logger.log(-1);
-        Logger.log("!");
-        //endregion
-
-        //region then
-        assertSysoutContains("string: !!");
-        assertSysoutContains("primitive: 0");
-        assertSysoutContains("string: !");
-        //endregion
-    }
-
-    @Test
-    public void shouldLogByte() throws IOException {
-        //region when
-        Logger.log((byte)1);
-        Logger.log((byte)0);
-        Logger.log((byte)-1);
-        //endregion
-
-        //region then
-        assertSysoutContains("primitive: ");
-        assertSysoutContains("1");
-        assertSysoutContains("0");
-        assertSysoutContains("-1");
-        //endregion
-    }
-
     @Test
     public void shouldLogChar() throws IOException {
         //region when
         Logger.log('a');
         Logger.log('b');
+        Logger.flush();
         //endregion
 
         //region then
@@ -75,9 +42,11 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //region when
         Logger.log("test string 1");
         Logger.log("other str");
+        Logger.flush();
         //endregion
 
         //region then
+
         assertSysoutContains("string: ");
         assertSysoutContains("test string 1");
         assertSysoutContains("other str");
@@ -89,6 +58,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //region when
         Logger.log(true);
         Logger.log(false);
+        Logger.flush();
         //endregion
 
         //region then
@@ -102,13 +72,14 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogReference() throws IOException {
         //region when
         Logger.log(new Object());
+        Logger.log(new Object());
+        Logger.flush();
         //endregion
 
         //region then
-        assertSysoutContains("reference: ");
+        assertSysoutContains("reference:");
         assertSysoutContains("@");
         //endregion
     }
-
 
 }

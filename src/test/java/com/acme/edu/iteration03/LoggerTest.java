@@ -27,11 +27,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogIntegersArray() throws IOException {
         //region when
         Logger.log(new int[] {-1, 0, 1});
+        Logger.flush();
         //endregion
 
         //region then
         assertSysoutContains("primitives array:");
-        assertSysoutContains("[-1, 0, 1]");
+        assertSysoutContains("{-1, 0, 1}");
         //endregion
     }
 /*
@@ -68,11 +69,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         );
         //endregion
     }
-*/ /*
+*/
     @Test
     public void shouldLogStringsWithOneMethodCall() throws IOException {
         //region when
         Logger.log("str1", "string 2", "str 3");
+        Logger.flush();
         //endregion
 
         //region then
@@ -84,6 +86,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogIntegersWithOneMethodCall() throws IOException {
         //region when
         Logger.log(-1, 0, 1, 3);
+        Logger.flush();
         //endregion
 
         //region then
@@ -96,8 +99,9 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //region when
         Logger.log(1);
         Logger.log("str");
-        Logger.log(Integer.MAX_VALUE - 10);
-        Logger.log(11);
+        Logger.log(Integer.MAX_VALUE - 10, 11);
+        //Logger.log(11);
+        Logger.flush();
         //endregion
 
         //region then
@@ -107,6 +111,5 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains(11);
         //endregion
     }
-
-    */
+*/
 }
