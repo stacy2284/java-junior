@@ -1,4 +1,4 @@
-//package com.acme.edu.iteration02;
+//package com.acme.edu.FileOutputTest;
 //
 //import com.acme.edu.Logger;
 //import com.acme.edu.SysoutCaptureAndAssertionAbility;
@@ -25,14 +25,14 @@
 //
 //
 //    @Test
-//    public void shouldLogSequentIntegersAsSum() throws IOException {
+//    public void shouldLogSequentIntegersAsSum() throws Exception {
 //        //region when
 //        Logger.log("str 1");
 //        Logger.log(1);
 //        Logger.log(2);
 //        Logger.log("str 2");
 //        Logger.log(0);
-//        Logger.flush();
+//        Logger.close();
 //        //endregion
 //
 //        //region then
