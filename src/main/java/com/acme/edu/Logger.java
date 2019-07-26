@@ -19,7 +19,6 @@ public class Logger {
     }
 
     public static void close() throws Exception{
-        LC.flush();
         LC.close();
     }
 

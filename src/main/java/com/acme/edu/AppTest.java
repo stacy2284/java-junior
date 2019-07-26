@@ -5,7 +5,8 @@ package com.acme.edu;
  */
 public class AppTest {
     public static void main(String[] args) throws Exception{
-        Logger.log(123);
+
+
         Logger.log(13);
         Logger.log("asd");
         Logger.log("asd");

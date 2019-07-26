@@ -21,6 +21,7 @@ public class LoggerController {
     }
 
     public void close() throws Exception{
+        flush();
         saver.close();
     }
 
